@@ -1,4 +1,4 @@
-import API from '../api/axios';
+import API from '../api/Api-service';
 
 const StoryCard = ({ story, refreshStories }) => {
   const handleBookmark = async () => {

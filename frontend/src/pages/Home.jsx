@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
-import API from '../api/axios';
-
+import API from '../api/Api-service';
 import StoryCard from '../components/StoryCard';
 
 const Home = () => {
