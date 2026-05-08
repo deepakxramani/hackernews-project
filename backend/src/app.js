@@ -14,8 +14,6 @@ app.set('trust proxy', 1);
 app.use(helmet());
 
 // CORS
-import cors from 'cors';
-
 app.set('trust proxy', 1);
 
 app.use(
