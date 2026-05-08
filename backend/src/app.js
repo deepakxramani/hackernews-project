@@ -12,7 +12,12 @@ const app = express();
 app.use(helmet());
 
 // CORS
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://hackernews-pro.netlify.app/'],
+    credentials: true,
+  }),
+);
 
 // Rate limiting
 const limiter = rateLimit({
