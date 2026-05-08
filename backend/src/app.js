@@ -14,9 +14,14 @@ app.set('trust proxy', 1);
 app.use(helmet());
 
 // CORS
+import cors from 'cors';
+
+app.set('trust proxy', 1);
+
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://hackernews-pro.netlify.app/'],
+    origin: ['http://localhost:5173', 'https://hackernews-pro.netlify.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true,
   }),
 );
