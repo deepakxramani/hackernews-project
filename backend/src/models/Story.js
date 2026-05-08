@@ -24,6 +24,11 @@ const storySchema = new mongoose.Schema(
       type: String,
     },
 
+    comments: {
+      type: Number,
+      default: 0,
+    },
+
     bookmarks: [
       {
         type: mongoose.Schema.Types.ObjectId,

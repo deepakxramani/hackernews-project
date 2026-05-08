@@ -13,8 +13,35 @@ export const registerUser = async (req, res) => {
       });
     }
 
+    // Validate name
+    const trimmedName = name.trim();
+    if (trimmedName.length < 2) {
+      return res.status(400).json({
+        success: false,
+        message: 'Name must be at least 2 characters',
+      });
+    }
+
+    // Validate email format
+    const trimmedEmail = email.trim().toLowerCase();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide a valid email address',
+      });
+    }
+
+    // Validate password length
+    if (password.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'Password must be at least 6 characters',
+      });
+    }
+
     const existingUser = await User.findOne({
-      email,
+      email: trimmedEmail,
     });
 
     if (existingUser) {
@@ -27,8 +54,8 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
-      name,
-      email,
+      name: trimmedName,
+      email: trimmedEmail,
       password: hashedPassword,
     });
 
@@ -46,7 +73,7 @@ export const registerUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: 'Registration failed. Please try again.',
     });
   }
 };
@@ -55,8 +82,17 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email and password are required',
+      });
+    }
+
+    const trimmedEmail = email.trim().toLowerCase();
+
     const user = await User.findOne({
-      email,
+      email: trimmedEmail,
     });
 
     if (!user) {
@@ -89,7 +125,7 @@ export const loginUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: 'Login failed. Please try again.',
     });
   }
 };
