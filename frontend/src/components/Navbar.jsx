@@ -86,7 +86,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className='hidden sm:flex items-center gap-2'>
+          <div className='desktop-nav items-center gap-2'>
             <Link
               to='/'
               className={navLinkClass('/')}
@@ -162,7 +162,7 @@ const Navbar = () => {
           <button
             ref={hamburgerRef}
             onClick={() => setMobileOpen(!mobileOpen)}
-            className='sm:hidden flex flex-col gap-1.5 p-2 cursor-pointer'
+            className='mobile-hamburger flex-col gap-1.5 p-2 cursor-pointer'
             aria-label='Toggle menu'
             aria-expanded={mobileOpen}
           >
@@ -187,7 +187,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div
           ref={mobileMenuRef}
-          className={`sm:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`mobile-menu overflow-hidden transition-all duration-300 ease-in-out ${
             mobileOpen
               ? 'max-h-[400px] opacity-100 pb-4 pt-2'
               : 'max-h-0 opacity-0'

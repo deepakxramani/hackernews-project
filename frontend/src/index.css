@@ -243,3 +243,26 @@ body::before {
   opacity: 1;
   transform: translateX(-50%) scale(1);
 }
+
+/* ===== Navbar Responsive ===== */
+.desktop-nav {
+  display: flex !important;
+}
+.mobile-hamburger {
+  display: none !important;
+}
+.mobile-menu {
+  display: none !important;
+}
+
+@media (max-width: 639px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-hamburger {
+    display: flex !important;
+  }
+  .mobile-menu {
+    display: block !important;
+  }
+}
